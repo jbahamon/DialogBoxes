@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/dialog_boxes/simple_dialog_box.gd" type="Script" id=1]
+[ext_resource path="res://test.gd" type="Script" id=2]
+[ext_resource path="res://advance-button1.png" type="Texture" id=3]
+
+[node name="Node" type="Node"]
+script = ExtResource( 2 )
+
+[node name="SimpleDialogBox" type="CanvasLayer" parent="."]
+script = ExtResource( 1 )
+transition = 1
+transition_time_ms = 200.0
+margin = 5
+padding = 10
+advance_indicator_texture = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
