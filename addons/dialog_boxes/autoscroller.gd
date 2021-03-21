@@ -23,7 +23,7 @@ func update_scroll(percent: float):
 			characters_to_discard += line_lengths[next_line_to_show]
 			scroll.ratio = (next_line_to_show - lines_per_screen + 1.0)/line_lengths.size()
 			next_line_to_show += 1
-
+			
 func reset():
 	var text = label.text
 	var font = label.get_font("normal")

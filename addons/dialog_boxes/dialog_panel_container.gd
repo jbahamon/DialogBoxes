@@ -13,7 +13,7 @@ func _init():
 	_margin_container = MarginContainer.new()
 	_outline_margin_container = MarginContainer.new()
 	_text_label = RichTextLabel.new()
-
+	self.rect_clip_content = true
 
 func _ready():
 	self.add_child(_margin_container)
@@ -23,6 +23,7 @@ func _ready():
 	
 	_margin_container.add_child(_outline_margin_container)
 
+	_outline_margin_container.rect_clip_content = false
 	update_outline_margin()
 
 	_outline_margin_container.add_child(_text_label)	
@@ -83,7 +84,6 @@ func set_positioning(new_positioning: int, height_percent: float, margin: int):
 	
 func update_outline_margin():
 	var max_outline = get_max_outline()
-	print(max_outline)
 	_outline_margin_container.margin_top = max_outline
 	_outline_margin_container.margin_bottom = max_outline
 	_outline_margin_container.margin_left = max_outline
