@@ -84,6 +84,8 @@ func _ready():
 	_transition_tween.connect("tween_all_completed", self, "on_transition_finished")
 	init_rich_text_label()	
 	
+	_dialog_panel_container.update_outline_margin()
+	
 		
 
 func _unhandled_input(event):
@@ -314,30 +316,36 @@ func set_normal_font(new_value: Font):
 	if _text_label != null:
 		_text_label.add_font_override("normal", new_value)
 
+	if _dialog_panel_container != null:
+		_dialog_panel_container.update_outline_margin()
 
 func set_bold_font(new_value: Font):
 	bold_font = new_value
 	if _text_label != null:
 		_text_label.add_font_override("bold", new_value)
-
+	if _dialog_panel_container != null:
+			_dialog_panel_container.update_outline_margin()
 
 func set_italics_font(new_value: Font):
 	italics_font = new_value
 	if _text_label != null:
 		_text_label.add_font_override("italics", new_value)
-
+	if _dialog_panel_container != null:
+			_dialog_panel_container.update_outline_margin()
 
 func set_bold_italics_font(new_value: Font):
 	bold_italics_font = new_value
 	if _text_label != null:
 		_text_label.add_font_override("bold_italics", new_value)
-
+	if _dialog_panel_container != null:
+			_dialog_panel_container.update_outline_margin()
 
 func set_mono_font(new_value: Font):
 	mono_font = new_value
 	if _text_label != null:
 		_text_label.add_font_override("mono", new_value)
-
+	if _dialog_panel_container != null:
+			_dialog_panel_container.update_outline_margin()
 
 func set_panel_stylebox(new_value: StyleBox):
 	panel_stylebox = new_value
@@ -346,7 +354,9 @@ func set_panel_stylebox(new_value: StyleBox):
 	
 func set_theme(new_value: Theme):
 	theme = new_value
-	if _dialog_panel_container != null:
-		_dialog_panel_container.theme = new_value
 	if _text_label != null:
 		_text_label.theme = new_value
+
+	if _dialog_panel_container != null:
+		_dialog_panel_container.theme = new_value
+		_dialog_panel_container.update_outline_margin()

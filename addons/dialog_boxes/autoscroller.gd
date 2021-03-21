@@ -22,7 +22,6 @@ func update_scroll(percent: float):
 		if new_characters > 0:
 			characters_to_discard += line_lengths[next_line_to_show]
 			scroll.ratio = (next_line_to_show - lines_per_screen + 1.0)/line_lengths.size()
-			print(scroll.ratio)
 			next_line_to_show += 1
 
 func reset():
