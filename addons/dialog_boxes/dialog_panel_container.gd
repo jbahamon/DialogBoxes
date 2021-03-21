@@ -23,6 +23,9 @@ func _ready():
 	
 	_margin_container.add_child(_outline_margin_container)
 
+
+	_outline_margin_container.size_flags_horizontal = SIZE_EXPAND_FILL
+	_outline_margin_container.size_flags_vertical = SIZE_EXPAND_FILL
 	_outline_margin_container.rect_clip_content = false
 	update_outline_margin()
 
@@ -84,7 +87,7 @@ func set_positioning(new_positioning: int, height_percent: float, margin: int):
 	
 func update_outline_margin():
 	var max_outline = get_max_outline()
-	_outline_margin_container.margin_top = max_outline
-	_outline_margin_container.margin_bottom = max_outline
-	_outline_margin_container.margin_left = max_outline
-	_outline_margin_container.margin_right = max_outline
+	_outline_margin_container.set("custom_constants/margin_top", max_outline)
+	_outline_margin_container.set("custom_constants/margin_bottom", max_outline)
+	_outline_margin_container.set("custom_constants/margin_left", max_outline)
+	_outline_margin_container.set("custom_constants/margin_right", max_outline)

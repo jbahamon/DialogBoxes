@@ -215,6 +215,7 @@ func dequeue_text():
 		return
 
 	_text_label.visible_characters = 0
+	_text_label.scroll_to_line(0)
 	
 	if bbcode_enabled:
 		_text_label.bbcode_text = text_queue[0]

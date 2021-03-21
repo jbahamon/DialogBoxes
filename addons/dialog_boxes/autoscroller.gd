@@ -1,5 +1,6 @@
 var label: RichTextLabel
 var line_lengths: PoolIntArray
+var line_height: int
 var next_line_to_show: int
 var lines_per_screen: int
 var total_characters: int
@@ -21,8 +22,9 @@ func update_scroll(percent: float):
 		var new_characters = visible_characters - characters_to_discard
 		if new_characters > 0:
 			characters_to_discard += line_lengths[next_line_to_show]
-			scroll.ratio = (next_line_to_show - lines_per_screen + 1.0)/line_lengths.size()
 			next_line_to_show += 1
+			scroll.value = (next_line_to_show - lines_per_screen) * (line_height + 1)
+			
 			
 func reset():
 	var text = label.text
@@ -30,7 +32,8 @@ func reset():
 	var width = label.rect_size.x
 	var height = label.rect_size.y
 	
-	lines_per_screen = floor(height/font.get_string_size(text).y)
+	line_height = font.get_string_size(text).y
+	lines_per_screen = floor(height/line_height)
 	next_line_to_show = lines_per_screen
 	
 	var new_line_lengths = PoolIntArray()
@@ -49,9 +52,13 @@ func reset():
 				line = line_plus_word
 		
 		new_line_lengths.append(line.strip_edges().length())
+	
 			
 	line_lengths = new_line_lengths
 	scroll_required = line_lengths.size() > lines_per_screen
+	
+	line_lengths.append(0)
+	label.append_bbcode("\n")
 	
 	characters_to_discard = 0
 	for i in range(min(next_line_to_show, line_lengths.size())):
@@ -59,6 +66,4 @@ func reset():
 	
 	total_characters = 0
 	for length in line_lengths:
-		total_characters += length
-	
-	
+		total_characters += length	
